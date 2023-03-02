@@ -7,7 +7,10 @@
 
 #import "ViewController.h"
 #import <AVKit/AVKit.h>
-
+#define subPathPCM @"/Documents/record.pcm"
+#define kInputBus (1)
+#define kOutputBus (0)
+#define stroePath [NSHomeDirectory() stringByAppendingString:subPathPCM]
 @interface ViewController ()
 {
     AudioUnit remoteIOUnit;
@@ -17,7 +20,43 @@
 @end
 
 @implementation ViewController
+static OSStatus inputCallBackFun(    void *                            inRefCon,
+                                 AudioUnitRenderActionFlags *    ioActionFlags,
+                                 const AudioTimeStamp *            inTimeStamp,
+                                 UInt32                            inBusNumber,
+                                 UInt32                            inNumberFrames,
+                                 AudioBufferList * __nullable    ioData)
+{
+    
+    ViewController *recorder = (__bridge ViewController *)(inRefCon);
+    AudioBufferList bufferList;
+    bufferList.mNumberBuffers = 1;
+    bufferList.mBuffers[0].mData = NULL;
+    bufferList.mBuffers[0].mDataByteSize = 0;
+    
+    AudioUnitRender(recorder->remoteIOUnit,
+                    ioActionFlags,
+                    inTimeStamp,
+                    kInputBus,
+                    inNumberFrames,
+                    &bufferList);
+    
+//    //回调中写 函数
+//    recorder ->recorderTempBuffer = malloc(CONST_BUFFER_SIZE);
+//
+//    typeof(recorder) __weak weakSelf = recorder;
+//    typeof(weakSelf) __strong strongSelf = weakSelf;
+//
+    AudioBuffer buffer = bufferList.mBuffers[0];
+    int len = buffer.mDataByteSize;
+//    memcpy(strongSelf->recorderTempBuffer, buffer.mData, len);
 
+    [recorder writeBytes:buffer.mData len:len toPath:stroePath];
+    
+
+    
+    return noErr;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -43,6 +82,23 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal) {
     }
 }
 
+- (void)writeBytes:(Byte *)bytes len:(NSUInteger)len toPath:(NSString *)path
+{
+    NSData *data = [NSData dataWithBytes:bytes length:len];
+    [self writeData:data toPath:path];
+}
+
+- (void)writeData:(NSData *)data toPath:(NSString *)path
+{
+    NSString *savePath = path;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:savePath] == false)
+    {
+        [[NSFileManager defaultManager] createFileAtPath:savePath contents:nil attributes:nil];
+    }
+    NSFileHandle * handle = [NSFileHandle fileHandleForWritingAtPath:savePath];
+    [handle seekToEndOfFile];
+    [handle writeData:data];
+}
 -(void)configSession {
     NSError * error;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -86,12 +142,12 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal) {
 -(void)connectMicphoneAndSpeaker {
     OSStatus status = noErr;
     UInt32 oneFlag = 1;
-    UInt32 busZero = 0;// Element 0
+    UInt32 busZero = kOutputBus;// Element 0
     status = AudioUnitSetProperty(remoteIOUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output, busZero, &oneFlag, sizeof(oneFlag));
     CheckStatus(status, @"Could not Connect To Speaker", YES);
     
     
-    UInt32 busOne = 1; // Element 1
+    UInt32 busOne = kInputBus; // Element 1
     AudioUnitSetProperty(remoteIOUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, busOne, &oneFlag, sizeof(oneFlag));
     
     
@@ -113,26 +169,34 @@ static void CheckStatus(OSStatus status, NSString *message, BOOL fatal) {
     
     
     AURenderCallbackStruct renderProc;
-    renderProc.inputProc = &RecordCallback;
+    renderProc.inputProc = &inputCallBackFun;
     renderProc.inputProcRefCon = (__bridge void *)self;
 //    AUGraphSetNodeInputCallback(mGraph, ioNode, 0, &renderProc);
+    
+    status = AudioUnitSetProperty(remoteIOUnit,
+                                  kAudioOutputUnitProperty_SetInputCallback,
+                                  kAudioUnitScope_Output,
+                                  kInputBus,
+                                  &renderProc,
+                                  sizeof(renderProc));
 }
 
-//static OSStatus RecordCallback(void *inRefCon,
-//                               AudioUnitRenderActionFlags *ioActionFlags,
-//                               const AudioTimeStamp *inTimeStamp,
-//                               UInt32 inBusNumber,
-//                               UInt32 inNumberFrames,
-//                               AudioBufferList *ioData)
-// {
-//    ViewController *vc = (__bridge ViewController *)inRefCon;
-//    vc->buffList->mNumberBuffers = 1;
-//    OSStatus status = AudioUnitRender(vc->outputUnit, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames, vc->buffList);
-//    if (status != noErr) {
-//        NSLog(@"AudioUnitRender error:%d", status);
-//    }
-//    NSLog(@"RecordCallback size = %d", vc->buffList->mBuffers[0].mDataByteSize);
-//    [vc writePCMData:vc->buffList->mBuffers[0].mData size:vc->buffList->mBuffers[0].mDataByteSize];
-//    return noErr;
-//}
+-(void)start {
+    AudioOutputUnitStart(remoteIOUnit);
+    NSLog(@"stroePath == %@",stroePath);
+}
+
+-(void)stop {
+    
+    CheckStatus(AudioOutputUnitStop(remoteIOUnit), @"AudioOutputUnitStop failed", NO);
+    CheckStatus(AudioComponentInstanceDispose(remoteIOUnit),
+               @"AudioComponentInstanceDispose failed", NO);
+}
+- (IBAction)startClick:(id)sender {
+    [self start];
+}
+- (IBAction)stopClick:(id)sender {
+    [self stop];
+}
+
 @end
