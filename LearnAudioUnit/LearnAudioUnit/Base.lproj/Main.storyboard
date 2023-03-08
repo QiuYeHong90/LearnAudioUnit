@@ -33,16 +33,30 @@
                                     <action selector="stopClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W6k-lM-g4k"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEe-35-bmS">
+                                <rect key="frame" x="161.66666666666666" y="430" width="70" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="9Nw-Ex-Pwg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" red="0.062745098040000002" green="0.2470588235" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gdQ-JU-r3t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="9eF-re-h71"/>
                             <constraint firstItem="xep-vV-5sT" firstAttribute="top" secondItem="gdQ-JU-r3t" secondAttribute="bottom" id="BNt-hN-7bB"/>
+                            <constraint firstItem="uEe-35-bmS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="W1Y-9Q-5o4"/>
+                            <constraint firstItem="uEe-35-bmS" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Yaj-Dt-Qmt"/>
                             <constraint firstItem="xep-vV-5sT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Zhx-Jd-HiN"/>
                             <constraint firstItem="gdQ-JU-r3t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="69" id="snE-yJ-H0e"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textLabel" destination="uEe-35-bmS" id="tg3-3L-Lbv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

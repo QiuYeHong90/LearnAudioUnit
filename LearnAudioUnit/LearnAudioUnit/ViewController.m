@@ -17,6 +17,7 @@
     double _sampleRate;
     UInt32 channels;
 }
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @end
 
 @implementation ViewController
@@ -65,6 +66,8 @@ static OSStatus inputCallBackFun(    void *                            inRefCon,
     [self configSession];
     [self ioUnitGet];
     [self connectMicphoneAndSpeaker];
+    
+    
     
     
 }
