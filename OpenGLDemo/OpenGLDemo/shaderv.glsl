@@ -1,6 +1,6 @@
-
 attribute vec4 vPosition;
 attribute vec4 a_Color;
+
 varying lowp vec4 frag_Color;
 void main(void)
 {

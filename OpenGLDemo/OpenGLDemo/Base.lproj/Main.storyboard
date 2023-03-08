@@ -18,11 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Srq-IT-Aqs" customClass="SHGLView">
-                                <rect key="frame" x="0.0" y="59" width="393" height="200"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="RFj-Vx-m97"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -31,6 +28,7 @@
                             <constraint firstItem="Srq-IT-Aqs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ToI-uy-chn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Srq-IT-Aqs" secondAttribute="trailing" id="YBR-ur-3m7"/>
                             <constraint firstItem="Srq-IT-Aqs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gPz-0b-gDW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Srq-IT-Aqs" secondAttribute="bottom" id="orY-r3-UGa"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -40,7 +40,7 @@
     
     glAttachShader(program, verShader);
     glAttachShader(program, fragShader);
-    
+    glLinkProgram(program);
     
     //释放不需要的shader
     glDeleteShader(verShader);
