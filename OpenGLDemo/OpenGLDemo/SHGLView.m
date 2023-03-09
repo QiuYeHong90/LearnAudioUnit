@@ -162,7 +162,7 @@
         /// 绘制
         glDrawArrays(GL_TRIANGLES, 0, 3);
     
-        [myContext presentRenderbuffer:GL_RENDERBUFFER];
+     [myContext presentRenderbuffer:GL_RENDERBUFFER];
     
 }
 

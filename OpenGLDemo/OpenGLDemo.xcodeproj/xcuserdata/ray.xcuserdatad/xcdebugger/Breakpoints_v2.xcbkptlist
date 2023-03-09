@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
             endingLineNumber = "124"
-            landmarkName = "-setupProgram"
+            landmarkName = "-render"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04B6475529B8DBFE006195B8 /* AGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B6475429B8DBFE006195B8 /* AGLView.m */; };
+		719976EB29B9B8F60067B8E0 /* SHGLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 719976EA29B9B8F60067B8E0 /* SHGLTool.m */; };
 		71DD72C129B8651F00109D17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72C029B8651F00109D17 /* AppDelegate.m */; };
 		71DD72C429B8651F00109D17 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72C329B8651F00109D17 /* SceneDelegate.m */; };
 		71DD72C729B8651F00109D17 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72C629B8651F00109D17 /* ViewController.m */; };
@@ -19,7 +20,6 @@
 		71DD72E629B8652100109D17 /* OpenGLDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72E529B8652100109D17 /* OpenGLDemoUITests.m */; };
 		71DD72E829B8652100109D17 /* OpenGLDemoUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72E729B8652100109D17 /* OpenGLDemoUITestsLaunchTests.m */; };
 		71DD72F629B865C100109D17 /* SHGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72F529B865C100109D17 /* SHGLView.m */; };
-		71DD72F929B8848B00109D17 /* SHGLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DD72F829B8848B00109D17 /* SHGLTool.m */; };
 		71DD72FB29B8966E00109D17 /* shaderv.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 71DD72FA29B8966E00109D17 /* shaderv.glsl */; };
 		71DD72FD29B8969D00109D17 /* shaderf.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 71DD72FC29B8969D00109D17 /* shaderf.glsl */; };
 /* End PBXBuildFile section */
@@ -44,6 +44,8 @@
 /* Begin PBXFileReference section */
 		04B6475329B8DBFE006195B8 /* AGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGLView.h; sourceTree = "<group>"; };
 		04B6475429B8DBFE006195B8 /* AGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGLView.m; sourceTree = "<group>"; };
+		719976E929B9B8F60067B8E0 /* SHGLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHGLTool.h; path = ../../OpenGLTextures/OpenGLTextures/Tool/SHGLTool.h; sourceTree = "<group>"; };
+		719976EA29B9B8F60067B8E0 /* SHGLTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHGLTool.m; path = ../../OpenGLTextures/OpenGLTextures/Tool/SHGLTool.m; sourceTree = "<group>"; };
 		71DD72BC29B8651F00109D17 /* OpenGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71DD72BF29B8651F00109D17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		71DD72C029B8651F00109D17 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,8 +65,6 @@
 		71DD72E729B8652100109D17 /* OpenGLDemoUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenGLDemoUITestsLaunchTests.m; sourceTree = "<group>"; };
 		71DD72F429B865C100109D17 /* SHGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHGLView.h; sourceTree = "<group>"; };
 		71DD72F529B865C100109D17 /* SHGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHGLView.m; sourceTree = "<group>"; };
-		71DD72F729B8848B00109D17 /* SHGLTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHGLTool.h; sourceTree = "<group>"; };
-		71DD72F829B8848B00109D17 /* SHGLTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHGLTool.m; sourceTree = "<group>"; };
 		71DD72FA29B8966E00109D17 /* shaderv.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = shaderv.glsl; sourceTree = "<group>"; };
 		71DD72FC29B8969D00109D17 /* shaderf.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = shaderf.glsl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +117,8 @@
 		71DD72BE29B8651F00109D17 /* OpenGLDemo */ = {
 			isa = PBXGroup;
 			children = (
+				719976E929B9B8F60067B8E0 /* SHGLTool.h */,
+				719976EA29B9B8F60067B8E0 /* SHGLTool.m */,
 				71DD72BF29B8651F00109D17 /* AppDelegate.h */,
 				71DD72C029B8651F00109D17 /* AppDelegate.m */,
 				71DD72C229B8651F00109D17 /* SceneDelegate.h */,
@@ -130,8 +132,6 @@
 				71DD72D129B8652100109D17 /* main.m */,
 				71DD72F429B865C100109D17 /* SHGLView.h */,
 				71DD72F529B865C100109D17 /* SHGLView.m */,
-				71DD72F729B8848B00109D17 /* SHGLTool.h */,
-				71DD72F829B8848B00109D17 /* SHGLTool.m */,
 				71DD72FA29B8966E00109D17 /* shaderv.glsl */,
 				71DD72FC29B8969D00109D17 /* shaderf.glsl */,
 				04B6475329B8DBFE006195B8 /* AGLView.h */,
@@ -290,8 +290,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B6475529B8DBFE006195B8 /* AGLView.m in Sources */,
+				719976EB29B9B8F60067B8E0 /* SHGLTool.m in Sources */,
 				71DD72C729B8651F00109D17 /* ViewController.m in Sources */,
-				71DD72F929B8848B00109D17 /* SHGLTool.m in Sources */,
 				71DD72C129B8651F00109D17 /* AppDelegate.m in Sources */,
 				71DD72D229B8652100109D17 /* main.m in Sources */,
 				71DD72C429B8651F00109D17 /* SceneDelegate.m in Sources */,
